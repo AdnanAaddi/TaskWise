@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+  <div class="navbar">
+    <div class="container">
+      <div class="left-links">
+        <a href="{% url 'createproject' %}">Create New Project</a>
+      </div>
+      <div class="user-profile" id="user-profile">
+        <img src="{{user.profile_picture.url}}" alt="Profile Picture" id="profile-pic">
+        <div class="profile-info" id="profile-info">
+          <p>Welcome, {{ user.username }}</p>
+          <p>Email: {{ user.email }}</p>
+        </div>
+        <div class="logout-dropdown" id="logout-dropdown">
+          <button class="dropdown-button">Welcome, {{ user.username }}</button>
+          <div class="dropdown-content">
+            <a href="#">View Profile</a>
+            <a href="{% url 'logout' %}">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-content">
+    </div>
+
+  <script>
+    document.getElementById("user-profile").addEventListener("click", function() {
+      document.getElementById("logout-dropdown").classList.toggle("show");
+    });
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('#profile-pic')) {
+        var dropdowns = document.getElementsByClassName("logout-dropdown");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>
