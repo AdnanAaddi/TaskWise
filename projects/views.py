@@ -35,3 +35,6 @@ def update_project(request, project_id):
     else:
         form = ProjectForm(instance=project)
     return render(request, 'projects/update_project.html', {'form': form, 'project': project})
+
+def board(request):
+    return render(request,"projects/board.html")

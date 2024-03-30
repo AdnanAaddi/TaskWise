@@ -76,5 +76,3 @@ class LogoutView(View):
         logout(request)
         return redirect('login')
     
-def board(request):
-    return render(request,"users/board.html")
