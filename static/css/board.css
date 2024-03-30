@@ -1,103 +1,76 @@
 .container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
 .list-container {
 	display: flex;
-	justify-content: space-around;
-	width: 80%;
-	margin-top: 30px;
+	justify-content: space-between;
 }
 
 .list {
+	width: 30%;
 	border: 1px solid #ccc;
-	padding: 20px;
-	min-height: 300px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	position: relative;
+	padding: 10px;
+	box-sizing: border-box;
 }
 
 .list h2 {
-	margin-top: 0;
+	margin: 0;
+	padding: 10px;
 }
 
 .card {
-	background-color: #f5f5f5;
 	border: 1px solid #ccc;
-	padding: 15px;
-	margin-bottom: 15px;
-	border-radius: 5px;
-	position: relative;
+	padding: 10px;
+	margin-bottom: 10px;
 }
 
 .card p {
 	margin: 0;
 }
 
-.comment-field {
-	display: none;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	padding: 10px;
-	box-sizing: border-box;
-	border-radius: 5px;
-}
-
-.comment-input {
+.add-card {
+	display: block;
 	width: 100%;
-	padding: 5px;
-	border: none;
-}
-
-.add-comment-btn {
+	padding: 10px;
 	background-color: #4CAF50;
 	color: white;
-	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.add-card:hover {
+	background-color: #45a049;
+}
+
+.add-list {
+	display: block;
+	padding: 10px;
+	background-color: #4CAF50;
+	color: white;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	margin-top: 10px;
 }
 
-.add-comment-btn:hover {
-	background-color: #3e8e41;
-}
-
-.add-card {
-	display: block;
-	background-color: #4CAF50;
-	color: white;
-	padding: 10px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-top: 20px;
-}
-
-.add-card:hover {
-	background-color: #3e8e41;
-}
-
-.add-list {
-	display: block;
-	background-color: #4CAF50;
-	color: white;
-	padding: 10px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-top: 20px;
-}
-
 .add-list:hover {
-	background-color: #3e8e41;
+	background-color: #45a049;
+}
+
+.add-comment {
+	display: block;
+	padding: 5px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.add-comment:hover {
+	background-color: #0069d9;
 }
