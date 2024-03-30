@@ -1,5 +1,5 @@
 from typing import Any
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -48,7 +48,7 @@ class LoginView(View):
         try:
             username = ProjectUser.objects.get(email=email).username
         except ProjectUser.DoesNotExist:
-            return redirect('invalid_login')
+            return HttpResponse('invalid_login')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
