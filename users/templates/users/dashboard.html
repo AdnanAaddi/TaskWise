@@ -24,6 +24,7 @@
               <h5 class="card-title">{{ project.name }}</h5>
               <p class="card-text">{{project.description}}</p>
               <a href=" {% url 'updateproject' project.id %}" class="btn btn-primary">View Details</a>
+              <a href=" {% url 'board'  %}" class="btn btn-primary">Create Board</a>
             </div>
           </div>
           {% endfor %}

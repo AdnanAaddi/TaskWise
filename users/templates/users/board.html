@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>To-Do Lists</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+</head>
+<body>
+	<div class="container">
+		<div class="list-container">
+			<div class="list" id="todo-list">
+				<h2>To-Do</h2>
+				<div class="card">
+					<p>Card 1</p>
+					<div class="comment-field">
+						<input type="text" placeholder="Add Comment" class="comment-input">
+						<button class="add-comment-btn">Add Comment</button>
+					</div>
+				</div>
+				<button class="add-card">Add Task</button>
+			</div>
+			<div class="list" id="in-progress-list">
+				<h2>In Progress</h2>
+				<div class="card">
+					<p>Card 1</p>
+					<div class="comment-field">
+						<input type="text" placeholder="Add Comment" class="comment-input">
+						<button class="add-comment-btn">Add Comment</button>
+					</div>
+				</div>
+				<button class="add-card">Add Task</button>
+			</div>
+			<div class="list" id="done-list">
+				<h2>Done</h2>
+				<div class="card">
+					<p>Card 1</p>
+					<div class="comment-field">
+						<input type="text" placeholder="Add Comment" class="comment-input">
+						<button class="add-comment-btn">Add Comment</button>
+					</div>
+				</div>
+				<button class="add-card">Add Task</button>
+			</div>
+		</div>
+		<button class="add-list">Add List</button>
+	</div>
+	<script src="scripts.js"></script>
+</body>
+</html>

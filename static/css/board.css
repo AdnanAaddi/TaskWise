@@ -1,0 +1,103 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.list-container {
+	display: flex;
+	justify-content: space-around;
+	width: 80%;
+	margin-top: 30px;
+}
+
+.list {
+	border: 1px solid #ccc;
+	padding: 20px;
+	min-height: 300px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+
+.list h2 {
+	margin-top: 0;
+}
+
+.card {
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	padding: 15px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	position: relative;
+}
+
+.card p {
+	margin: 0;
+}
+
+.comment-field {
+	display: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+
+.comment-input {
+	width: 100%;
+	padding: 5px;
+	border: none;
+}
+
+.add-comment-btn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.add-comment-btn:hover {
+	background-color: #3e8e41;
+}
+
+.add-card {
+	display: block;
+	background-color: #4CAF50;
+	color: white;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+.add-card:hover {
+	background-color: #3e8e41;
+}
+
+.add-list {
+	display: block;
+	background-color: #4CAF50;
+	color: white;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+.add-list:hover {
+	background-color: #3e8e41;
+}
