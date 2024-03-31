@@ -1,7 +1,7 @@
 from django.urls import path
-from projects.views import create_project, display_projects, update_project,board
+from projects.views import CreateProjectView, UpdateProjectView,boardView,display_projects
 urlpatterns = [
-    path('createproject/', create_project, name="createproject"),
-    path('updateproject/<int:project_id>/update/', update_project, name='updateproject'),
-     path('create-board/', board, name="board")
+    path('createproject/', CreateProjectView.as_view(), name="createproject"),
+    path('updateproject/<int:project_id>/update/', UpdateProjectView.as_view(), name='updateproject'),
+     path('create-board/', boardView.as_view(), name="board")
 ]

@@ -1,40 +1,50 @@
-from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, HttpResponse,  get_object_or_404
+from django.views import View
+from django.views.generic import TemplateView
 from projects.forms import ProjectForm , UpdateProjectForm
 from projects.models import Project
 from .models import Project
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
 # Create your views here.
-@login_required(login_url='/login/')
-def create_project(request):
-    if request.method == 'POST':
+class CreateProjectView(LoginRequiredMixin, View):
+    login_url = '/login/'  # Specify the login URL
+    
+    def get(self, request):
+        form = ProjectForm()
+        return render(request, 'projects/create_project.html', {'form': form})
+
+    def post(self, request):
         form = ProjectForm(request.POST)
         if form.is_valid():
             project = form.save(commit=False)
             project.owner = request.user
-            print(project.owner)
             project.save()
             return redirect('dashboard')  # Redirect to the dashboard after project creation
-    else:
-        form = ProjectForm()
-    return render(request, 'projects/create_project.html', {'form': form})
+        return render(request, 'projects/create_project.html', {'form': form})
+        
 
 def display_projects(user):
     user_projects = Project.objects.filter(owner=user)
     return user_projects
+    
 
-def update_project(request, project_id):
-    project = get_object_or_404(Project, pk=project_id)
-    if request.method == 'POST':
+class UpdateProjectView(View):
+    def get(self, request, project_id):
+        project = get_object_or_404(Project, pk=project_id)
+        form = UpdateProjectForm(instance=project)
+        return render(request, 'projects/update_project.html', {'form': form, 'project': project})
+    
+    def post(self, request, project_id):
+        project = get_object_or_404(Project, pk=project_id)
         form = UpdateProjectForm(request.POST, instance=project)
         if form.is_valid():
             form.save()
             return redirect('dashboard')
-    else:
-        form = ProjectForm(instance=project)
-    return render(request, 'projects/update_project.html', {'form': form, 'project': project})
+        else:
+            return render(request, 'projects/update_project.html', {'form': form, 'project': project})
 
-def board(request):
-    return render(request,"projects/board.html")
+class boardView(TemplateView):
+     template_name = "projects/board.html"
