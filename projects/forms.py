@@ -9,7 +9,7 @@ class ProjectForm(forms.ModelForm):
         widgets={
             'name': forms.TextInput(attrs={'class':'form-control'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'rows':5}),
-            'collaborators': forms.Select(attrs={'class':'form-control'}),
+            'collaborators': forms.SelectMultiple(attrs={'class':'form-control'}),
         }
 
 class UpdateProjectForm(forms.ModelForm):
@@ -17,9 +17,12 @@ class UpdateProjectForm(forms.ModelForm):
         model = Project
         fields = ['name', 'description', 'collaborators']
 
-        widgets=(
-            
-        )
+        widgets={
+            'name': forms.TextInput(attrs={'class':'form-control'}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'rows':5}),
+            'collaborators': forms.SelectMultiple(attrs={'class':'form-control'}),
+        }
+        
 
 
         
