@@ -6,7 +6,20 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = ['name', 'description','collaborators']
 
+        widgets={
+            'name': forms.TextInput(attrs={'class':'form-control'}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'rows':5}),
+            'collaborators': forms.Select(attrs={'class':'form-control'}),
+        }
+
 class UpdateProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['name', 'description', 'collaborators']
+
+        widgets=(
+            
+        )
+
+
+        
