@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse,  get_object_or_404
+from django.shortcuts import render, redirect,  get_object_or_404
 from django.views import View
 from django.views.generic import TemplateView
 from projects.forms import ProjectForm , UpdateProjectForm
@@ -45,6 +45,3 @@ class UpdateProjectView(View):
             return redirect('dashboard')
         else:
             return render(request, 'projects/update_project.html', {'form': form, 'project': project})
-
-class boardView(TemplateView):
-     template_name = "projects/board.html"
