@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do Lists</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="list-container">
+            {% for board in boards_with_lists %}
+            <div class="list" id="{{ board.name }}">
+                <h2>{{ board.name }}</h2>
+                {% for list_item in board.lists.all %}
+                <div class="card">
+                    <p>{{ list_item.title }}</p>
+                    <button class="add-comment">Add Comment</button>
+                </div>
+                {% endfor %}
+                <button class="add-card">Add Task</button>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="add-list">Add List</button>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
