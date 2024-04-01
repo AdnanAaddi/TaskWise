@@ -81,7 +81,7 @@
 			</div>
 			{% endfor %}
 		</div>
-		<button class="add-list">Add List</button>
+		<a href=" {% url 'add' project.id %}" class="add-list"><button>Add List</button></a>
 	</div>
 	<script src="scripts.js"></script>
 </body>
