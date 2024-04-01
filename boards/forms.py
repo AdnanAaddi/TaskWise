@@ -21,6 +21,11 @@ class CardForm(forms.ModelForm):
         fields = ['title', 'descripton', 'opened_by', 'assigned_to', 'label', 'list']
 
         widgets= {
+            'title': forms.TextInput(attrs={'class':'form-control'}),
+            'description':forms.TextInput(attrs={'class':'form-control'}),
+            'opened_by':forms.Select(attrs={'class':'form-control'}),
+            'assign_to':forms.Select(attrs={'class':'form-control'}),
+            'list':forms.HiddenInput(),
             'assigned_to': forms.CheckboxSelectMultiple
             
         }
