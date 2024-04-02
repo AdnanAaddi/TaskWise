@@ -73,7 +73,7 @@
             <div class="card mb-3">
               <div class="card-body">
                 <!-- Make the project name clickable to redirect to the board page -->
-                <h5 class="card-title"><a href="{% url 'boards' project.id %}">{{ project.name }}</a></h5>
+                <h5 class="card-title"><a href="{% url 'boards_page' project.id %}">{{ project.name }}</a></h5>
                 <p class="card-text">{{project.description}}</p>
                 <a href=" {% url 'updateproject' project.id %}" class="btn btn-primary">Update Project</a>
               </div>

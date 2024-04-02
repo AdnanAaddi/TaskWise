@@ -1,41 +1,35 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>To-Do Lists</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+    <title>{{ project.name }} Boards</title>
 </head>
 <body>
-	<div class="container">
-		<div class="list-container">
-			<div class="list" id="todo-list">
-				<h2>To-Do</h2>
-				<div class="card">
-					<p>Card 1</p>
-					<button class="add-comment">Add Comment</button>
-				</div>
-				<button class="add-card">Add Task</button>
-			</div>
-			<div class="list" id="in-progress-list">
-				<h2>In Progress</h2>
-				<div class="card">
-					<p>Card 1</p>
-					<button class="add-comment">Add Comment</button>
-				</div>
-				<button class="add-card">Add Task</button>
-			</div>
-			<div class="list" id="done-list">
-				<h2>Done</h2>
-				<div class="card">
-					<p>Card 1</p>
-					<button class="add-comment">Add Comment</button>
-				</div>
-				<button class="add-card">Add Task</button>
-			</div>
-		</div>
-		<button class="add-list">Add List</button>
-	</div>
-	<script src="scripts.js"></script>
+    <h1>{{ project.name }} Boards</h1>
+    <ul>
+        {% for board in boards %}
+            <li>{{ board.title }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Button to add a new board -->
+    <button onclick="toggleForm()">Add Board</button>
+    <div id="boardForm" style="display: none;">
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="board_name" placeholder="Board Name">
+            <button type="submit">Create</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleForm() {
+            var form = document.getElementById('boardForm');
+            if (form.style.display === 'none') {
+                form.style.display = 'block';
+            } else {
+                form.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
