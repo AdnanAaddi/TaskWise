@@ -18,12 +18,12 @@ class Board(models.Model):
         return new_list 
 
 class List(models.Model):
-    tittle = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     board = models.ForeignKey(Board, related_name='lists', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.tittle
+        return self.title
     
 class Card(models.Model):
     title = models.CharField(max_length=100)
