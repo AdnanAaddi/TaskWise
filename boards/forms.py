@@ -18,7 +18,7 @@ class CardForm(forms.ModelForm):
     
     class Meta:
         model = Card
-        fields = ['title', 'descripton', 'opened_by', 'assigned_to', 'label', 'list']
+        fields = ['title', 'description', 'opened_by', 'assigned_to', 'labels']
 
         widgets= {
             'title': forms.TextInput(attrs={'class':'form-control'}),

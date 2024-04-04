@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .models import Board, Project, List
 from django.urls import reverse
+from boards.forms import CardForm
 
 def boards_page(request, project_id):
     project = Project.objects.get(pk=project_id)
@@ -29,5 +30,23 @@ def board_lists(request, board_id):
             return redirect(reverse('lists', kwargs={'board_id': board_id}))
 
     # This part will execute for GET requests and also for POST if no redirect happens
-    lists = List.objects.filter(board=board)  # Ordering by most recent
+    lists = List.objects.filter(board=board)
     return render(request, 'boards/lists.html', {'board': board, 'lists': lists})
+
+# Add a Card throgh the Card Model Form
+def add_card(request, list_id):
+    list_instance = List.objects.get(id=list_id)
+    board_id = list_instance.board.id
+    if request.method == 'POST':
+        form = CardForm(request.POST)
+        print(request.POST)
+        if form.is_valid():
+            card = form.save(commit=False)
+            card.opened_by = request.user  # Assuming the user is logged in
+            card.list_id=list_id
+            card.save()
+            form.save_m2m()  # Required for saving ManyToMany relations
+            return redirect(reverse('lists', kwargs={'board_id': board_id}))
+    else:
+        form = CardForm()
+    return render(request, 'boards/create_card.html', {'form': form})
