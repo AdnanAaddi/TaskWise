@@ -32,7 +32,7 @@ class Card(models.Model):
     assigned_to = models.ManyToManyField(User, related_name='assigned_cards')
     labels = models.CharField(max_length=100)
     is_open = models.BooleanField(default=True)
-    list = models.ForeignKey(List, on_delete=models.CASCADE)
+    list = models.ForeignKey(List, on_delete=models.CASCADE, related_name='cards')
     created_at=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

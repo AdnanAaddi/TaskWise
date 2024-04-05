@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from .models import Board, Project, List
+from .models import Board, Project, List, Card
 from django.urls import reverse
 from boards.forms import CardForm
 
@@ -20,7 +20,9 @@ def boards_page(request, project_id):
 
 def board_lists(request, board_id):
     board = get_object_or_404(Board, pk=board_id)
+    lists = List.objects.filter(board=board)
     
+    # Fetch cards for each list
     if request.method == 'POST':
         # Handling the form submission for creating a new list
         list_title = request.POST.get('list_title')
@@ -37,6 +39,7 @@ def board_lists(request, board_id):
 def add_card(request, list_id):
     list_instance = List.objects.get(id=list_id)
     board_id = list_instance.board.id
+    cards = list_instance.cards.all()
     if request.method == 'POST':
         form = CardForm(request.POST)
         print(request.POST)

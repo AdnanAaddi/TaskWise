@@ -72,7 +72,12 @@
             {% for list in lists %}
             <div class="list" id="list-{{ list.id }}-list">
                 <h2>{{ list.title }}</h2>
-
+                {% for card in list.cards.all %}
+                <div class="card">
+                    <p>{{ card.title }}</p>
+                    <!-- Add other card details here -->
+                </div>
+                {% endfor %}
                 <div class="add-task">
                     <!-- Wrap the button inside an anchor tag to open the form in a new page -->
                     <a href="{% url 'add_card' list.id %}" class="new-card">Add New Card</a>
@@ -91,7 +96,7 @@
         </div>
     </div>
     <script>
-        document.getElementById("show-textbox").addEventListener("click", function() {
+        document.getElementById("show-textbox").addEventListener("click", function () {
             // Show the text field and submit button
             var textBox = document.querySelector("#add-list-form input[name='list_title']");
             textBox.style.display = "inline-block";
