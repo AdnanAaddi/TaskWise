@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .models import Board, Project, List, Card
 from django.urls import reverse
 from boards.forms import CardForm
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
 
 def boards_page(request, project_id):
     project = Project.objects.get(pk=project_id)
@@ -39,7 +41,6 @@ def board_lists(request, board_id):
 def add_card(request, list_id):
     list_instance = List.objects.get(id=list_id)
     board_id = list_instance.board.id
-    cards = list_instance.cards.all()
     if request.method == 'POST':
         form = CardForm(request.POST)
         print(request.POST)
@@ -53,3 +54,16 @@ def add_card(request, list_id):
     else:
         form = CardForm()
     return render(request, 'boards/create_card.html', {'form': form})
+
+@require_POST
+def move_card_to_list(request):
+    card_id = request.POST.get('card_id')
+    target_list_id = request.POST.get('target_list_id')
+
+    card = get_object_or_404(Card, pk=card_id)
+    target_list = get_object_or_404(List, pk=target_list_id)
+
+    card.list = target_list
+    card.save()
+
+    return JsonResponse({"message": "Card moved successfully."})
