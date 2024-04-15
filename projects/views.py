@@ -22,6 +22,7 @@ class CreateProjectView(LoginRequiredMixin, View):
             project = form.save(commit=False)
             project.owner = request.user
             project.save()
+            form.save_m2m()
             return redirect('dashboard')  # Redirect to the dashboard after project creation
         return render(request, 'projects/create_project.html', {'form': form})
         
