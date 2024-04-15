@@ -32,17 +32,3 @@ def display_projects(user):
     return user_projects
     
 
-class UpdateProjectView(View):
-    def get(self, request, project_id):
-        project = get_object_or_404(Project, pk=project_id)
-        form = UpdateProjectForm(instance=project)
-        return render(request, 'projects/update_project.html', {'form': form, 'project': project})
-    
-    def post(self, request, project_id):
-        project = get_object_or_404(Project, pk=project_id)
-        form = UpdateProjectForm(request.POST, instance=project)
-        if form.is_valid():
-            form.save()
-            return redirect('dashboard')
-        else:
-            return render(request, 'projects/update_project.html', {'form': form, 'project': project})
