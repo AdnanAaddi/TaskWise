@@ -22,4 +22,4 @@ urlpatterns = [
     path('', include('users.urls')),
     path('', include('projects.urls')),
     path('', include('boards.urls')),
-]
+] 
